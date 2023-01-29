@@ -1,6 +1,6 @@
 package wasmer
 
-// #include <wasmer.h>
+// #include <wasmer_wasm.h>
 import "C"
 
 // CompilerKind represents the possible compiler types.
@@ -40,24 +40,18 @@ func (self CompilerKind) String() string {
 //
 //   IsCompilerAvailable(CRANELIFT)
 func IsCompilerAvailable(compiler CompilerKind) bool {
-	return bool(C.wasmer_is_compiler_available(uint32(C.wasmer_compiler_t(compiler))))
+	return bool(C.wasmer_is_compiler_available(C.wasmer_compiler_t(compiler)))
 }
 
 // EngineKind represents the possible engine types.
 type EngineKind C.wasmer_engine_t
 
 const (
-	// Represents the Universal engine.
-	UNIVERSAL = EngineKind(C.UNIVERSAL)
+	// Represents the JIT engine.
+	JIT = EngineKind(C.JIT)
 
-	// Represents the Dylib engine.
-	DYLIB = EngineKind(C.DYLIB)
-
-	// Deprecated constant. Please use UNIVERSAL instead.
-	JIT = UNIVERSAL
-
-	// Deprecated constant. Please use DYLIB instead.
-	NATIVE = DYLIB
+	// Represents the Native engine.
+	NATIVE = EngineKind(C.NATIVE)
 )
 
 // Strings returns the EngineKind as a string.
@@ -66,11 +60,11 @@ const (
 //   NATIVE.String() // "native"
 func (self EngineKind) String() string {
 	switch self {
-	case UNIVERSAL:
-		return "universal"
+	case JIT:
+		return "jit"
 
-	case DYLIB:
-		return "dylib"
+	case NATIVE:
+		return "native"
 	}
 	panic("Unknown engine")
 }
@@ -78,9 +72,9 @@ func (self EngineKind) String() string {
 // IsEngineAvailable checks that the given engine is available in this
 // current version of `wasmer-go`.
 //
-//   IsEngineAvailable(UNIVERSAL)
+//   IsEngineAvailable(JIT)
 func IsEngineAvailable(engine EngineKind) bool {
-	return bool(C.wasmer_is_engine_available(uint32(C.wasmer_engine_t(engine))))
+	return bool(C.wasmer_is_engine_available(C.wasmer_engine_t(engine)))
 }
 
 // Config holds the compiler and the Engine used by the Store.
@@ -103,50 +97,38 @@ func (self *Config) inner() *C.wasm_config_t {
 	return self._inner
 }
 
-// UseNativeEngine sets the engine to Universal in the configuration.
+// UseJITEngine sets the engine to JIT in the configuration.
 //
 //   config := NewConfig()
-//   config.UseUniversalEngine()
+//   config.UseJITEngine()
 //
-// This method might fail if the Universal engine isn't
-// available. Check `IsEngineAvailable` to learn more.
-func (self *Config) UseUniversalEngine() *Config {
-	if !IsEngineAvailable(UNIVERSAL) {
-		panic("This `wasmer-go` version doesn't include the Universal engine; use `IsEngineAvailable(UNIVERSAL)` to avoid this panic")
-	}
-
-	C.wasm_config_set_engine(self.inner(), uint32(C.wasmer_engine_t(UNIVERSAL)))
-
-	return self
-}
-
-// UseDylibEngine sets the engine to Dylib in the configuration.
-//
-//   config := NewConfig()
-//   config.UseDylibEngine()
-//
-// This method might fail if the Dylib engine isn't available. Check
+// This method might fail if the JIT engine isn't available. Check
 // `IsEngineAvailable` to learn more.
-func (self *Config) UseDylibEngine() *Config {
-	if !IsEngineAvailable(DYLIB) {
-		panic("This `wasmer-go` version doesn't include the DYLIB engine; use `IsEngineAvailable(DYLIB)` to avoid this panic")
+func (self *Config) UseJITEngine() *Config {
+	if !IsEngineAvailable(JIT) {
+		panic("This `wasmer-go` version doesn't include the JIT engine; use `IsEngineAvailable(JIT)` to avoid this panic")
 	}
 
-	C.wasm_config_set_engine(self.inner(), uint32(C.wasmer_engine_t(DYLIB)))
+	C.wasm_config_set_engine(self.inner(), C.wasmer_engine_t(JIT))
 
 	return self
 }
 
-// UseJITEngine is a deprecated method. Please use UseUniversalEngine
-// instead.
-func (self *Config) UseJITEngine() *Config {
-	return self.UseUniversalEngine()
-}
-
-// UseNativeEngine is a deprecated method. Please use
-// UseDylibEngine instead.
+// UseNativeEngine sets the engine to Native in the configuration.
+//
+//   config := NewConfig()
+//   config.UseNativeEngine()
+//
+// This method might fail if the Native engine isn't available. Check
+// `IsEngineAvailable` to learn more.
 func (self *Config) UseNativeEngine() *Config {
-	return self.UseDylibEngine()
+	if !IsEngineAvailable(NATIVE) {
+		panic("This `wasmer-go` version doesn't include the NATIVE engine; use `IsEngineAvailable(NATIVE)` to avoid this panic")
+	}
+
+	C.wasm_config_set_engine(self.inner(), C.wasmer_engine_t(NATIVE))
+
+	return self
 }
 
 // UseCraneliftCompiler sets the compiler to Cranelift in the configuration.
@@ -161,7 +143,7 @@ func (self *Config) UseCraneliftCompiler() *Config {
 		panic("This `wasmer-go` version doesn't include the Cranelift compiler; use `IsCompilerAvailable(CRANELIFT)` to avoid this panic")
 	}
 
-	C.wasm_config_set_compiler(self.inner(), uint32(C.wasmer_compiler_t(CRANELIFT)))
+	C.wasm_config_set_compiler(self.inner(), C.wasmer_compiler_t(CRANELIFT))
 
 	return self
 }
@@ -178,7 +160,7 @@ func (self *Config) UseLLVMCompiler() *Config {
 		panic("This `wasmer-go` version doesn't include the LLVM compiler; use `IsCompilerAvailable(LLVM)` to avoid this panic")
 	}
 
-	C.wasm_config_set_compiler(self.inner(), uint32(C.wasmer_compiler_t(LLVM)))
+	C.wasm_config_set_compiler(self.inner(), C.wasmer_compiler_t(LLVM))
 
 	return self
 }
@@ -196,7 +178,7 @@ func (self *Config) UseSinglepassCompiler() *Config {
 		panic("This `wasmer-go` version doesn't include the Singlepass compiler; use `IsCompilerAvailable(SINGLEPASS)` to avoid this panic")
 	}
 
-	C.wasm_config_set_compiler(self.inner(), uint32(C.wasmer_compiler_t(SINGLEPASS)))
+	C.wasm_config_set_compiler(self.inner(), C.wasmer_compiler_t(SINGLEPASS))
 
 	return self
 }

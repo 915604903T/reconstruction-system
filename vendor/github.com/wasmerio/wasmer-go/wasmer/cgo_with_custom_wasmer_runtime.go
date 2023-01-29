@@ -16,5 +16,5 @@ package wasmer
 // // go build -tags custom_wasmer_runtime
 // // ```
 //
-// #include <wasmer.h>
+// #include <wasmer_wasm.h>
 import "C"

@@ -4,9 +4,9 @@ import (
 	"os"
 	"strings"
 
-	"./handlers"
-	"./types"
-	"./version"
+	"reconstruction-system/handlers"
+	"reconstruction-system/types"
+	"reconstruction-system/version"
 
 	bootstrap "github.com/openfaas/faas-provider"
 

@@ -1,6 +1,6 @@
 package wasmer
 
-// #include <wasmer.h>
+// #include <wasmer_wasm.h>
 import "C"
 import (
 	"runtime"

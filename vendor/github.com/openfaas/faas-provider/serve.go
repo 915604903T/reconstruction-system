@@ -72,7 +72,7 @@ func Serve(handlers *types.FaaSHandlers, config *types.FaaSConfig) {
 	r.HandleFunc("/function/{name:["+NameExpression+"]+}/", handlers.FunctionProxy)
 	r.HandleFunc("/function/{name:["+NameExpression+"]+}/{params:.*}", handlers.FunctionProxy)
 
-	if handlers.HealthHandler != nil {
+	if config.EnableHealth {
 		r.HandleFunc("/healthz", handlers.HealthHandler).Methods("GET")
 	}
 
