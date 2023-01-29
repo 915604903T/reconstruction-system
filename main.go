@@ -47,6 +47,7 @@ func main() {
 	handlers.Init()
 	bootstrapHandlers := bootTypes.FaaSHandlers{
 		FunctionProxy:        handlers.MakeProxy(),
+		FunctionFileHandler:  handlers.MakeFileHandler(),
 		DeleteHandler:        handlers.MakeDeleteHandler(),
 		DeployHandler:        handlers.MakeDeployHandler(),
 		FunctionReader:       handlers.MakeFunctionReader(),

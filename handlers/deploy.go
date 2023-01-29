@@ -13,7 +13,6 @@ import (
 	"syscall"
 
 	"reconstruction-system/controller"
-	// "210.28.132.171/ShimeiT/faas-wasm/controller"
 
 	log "github.com/sirupsen/logrus"
 
