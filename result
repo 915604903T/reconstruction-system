@@ -1,0 +1,2173 @@
+CPU_NUM: 4
+pipeFile:  ./pipe/deriche.pipe
+deployment finish
+pipeFile:  ./pipe/gemm.pipe
+deployment finish
+pipeFile:  ./pipe/symm.pipe
+deployment finish
+pipeFile:  ./pipe/trmm.pipe
+deployment finish
+pipeFile:  ./pipe/syrk.pipe
+deployment finish
+pipeFile:  ./pipe/correlation.pipe
+deployment finish
+pipeFile:  ./pipe/covariance.pipe
+deployment finish
+pipeFile:  ./pipe/doigten.pipe
+deployment finish
+wait_queue length is not zero
+begin schedule
+Timer remain process: 3
+wait_queue length: 1
+now in wait queue 0 : trmm
+len wait queue =< remain
+ready len: 1
+wait len: 0
+move trmm from ready to running
+average: 3 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm before pchan in schedule
+after pchan in schedule
+trmm cpus: 1-3
+exit reschedule cpu
+
+PPPPPPPPPPPPPPPPPPP this is trmm
+PPPPPPPPPPPPPPPPPPPP result:  trmm this is invoke  trmm 
+PPPPPPPPPPPPPPPPPPP this is trmm
+PPPPPPPPPPPPPPPPPPPP result:  trmm this is first invoke
+wait_queue length is not zero
+begin schedule
+Timer remain process: 2
+wait_queue length: 1
+now in wait queue 0 : symm
+len wait queue =< remain
+ready len: 1
+wait len: 0
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm before pchan in schedule
+after pchan in schedule
+symm cpus: 2
+exit reschedule cpu
+
+PPPPPPPPPPPPPPPPPPP this is symm
+PPPPPPPPPPPPPPPPPPPP result:  symm this is invoke  symm 
+PPPPPPPPPPPPPPPPPPP this is symm
+PPPPPPPPPPPPPPPPPPPP result:  symm this is first invoke
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 1
+now in wait queue 0 : gemm
+len wait queue =< remain
+ready len: 1
+wait len: 0
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm before pchan in schedule
+after pchan in schedule
+gemm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: symm
+PPPPPPPPPPPPPPPPPPP this is gemm
+PPPPPPPPPPPPPPPPPPPP result:  gemm this is invoke  gemm 
+PPPPPPPPPPPPPPPPPPP this is gemm
+PPPPPPPPPPPPPPPPPPPP result:  gemm this is first invoke
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk before pchan in schedule
+after pchan in schedule
+syrk cpus: 1
+in reschedule cpu process: symm
+PPPPPPPPPPPPPPPPPPP this is syrk
+PPPPPPPPPPPPPPPPPPPP result:  syrk this is invoke  syrk 
+PPPPPPPPPPPPPPPPPPP this is syrk
+PPPPPPPPPPPPPPPPPPPP result:  syrk this is first invoke
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : deriche
+now in wait queue 3 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten before pchan in schedule
+after pchan in schedule
+doigten cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 3
+exit reschedule cpu
+
+PPPPPPPPPPPPPPPPPPP this is doigten
+PPPPPPPPPPPPPPPPPPPP result:  doigten this is invoke  doigten 
+PPPPPPPPPPPPPPPPPPP this is doigten
+PPPPPPPPPPPPPPPPPPPP result:  doigten this is first invoke
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : symm
+now in wait queue 1 : deriche
+now in wait queue 2 : gemm
+now in wait queue 3 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : deriche
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+now in wait queue 3 : trmm
+len wait queue > remian
+this is append name: deriche
+move deriche from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: deriche
+after allocate cpu
+deriche before pchan in schedule
+after pchan in schedule
+deriche cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+PPPPPPPPPPPPPPPPPPP this is deriche
+PPPPPPPPPPPPPPPPPPPP result:  deriche this is invoke  deriche 
+PPPPPPPPPPPPPPPPPPP this is deriche
+PPPPPPPPPPPPPPPPPPPP result:  deriche this is first invoke
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+now in wait queue 3 : doigten
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: deriche
+after allocate cpu
+deriche cpus: 1
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+now in wait queue 3 : symm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: deriche
+after allocate cpu
+deriche cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO deriche this is overTimer
+OOOOOOOOOOOOOOOOO deriche this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to deriche
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+now in wait queue 3 : deriche
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : deriche
+now in wait queue 3 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : symm
+now in wait queue 1 : deriche
+now in wait queue 2 : gemm
+now in wait queue 3 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : deriche
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+now in wait queue 3 : trmm
+len wait queue > remian
+this is append name: deriche
+move deriche from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: deriche
+after allocate cpu
+deriche this cgroup is Thaw()
+deriche cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+now in wait queue 3 : doigten
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: deriche
+after allocate cpu
+deriche cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+now in wait queue 3 : symm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: deriche
+after allocate cpu
+deriche cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO deriche this is overTimer
+OOOOOOOOOOOOOOOOO deriche this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to deriche
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+now in wait queue 3 : deriche
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : deriche
+now in wait queue 3 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : symm
+now in wait queue 1 : deriche
+now in wait queue 2 : gemm
+now in wait queue 3 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 4
+now in wait queue 0 : deriche
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+now in wait queue 3 : trmm
+len wait queue > remian
+this is append name: deriche
+move deriche from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: deriche
+after allocate cpu
+deriche this cgroup is Thaw()
+deriche cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+PPPPPPPPPPPPPPPPPPP this is deriche
+PPPPPPPPPPPPPPPPPPPP result:  deriche err: <nil>
+PPPPPPPPPPPPPPPPPPP this is deriche
+PPPPPPPPPPPPPPPPPPPP result:  deriche result: <nil>
+PPPPPPPPPPPPPPPPPPP this is deriche
+PPPPPPPPPPPPPPPPPPPP result:  deriche 11.996158
+PPPPPPPPPPPPPPPPPPP this is deriche
+
+OOOOOOOOOOOOOOO deriche this is overTimer
+OOOOOOOOOOOOOOOOOO deriche not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+begin schedule in proc_finish/overChan
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+len wait queue > remian
+gemm append ready queue
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 1
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 2
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 2
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOO doigten this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to doigten
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+now in wait queue 2 : doigten
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : trmm
+now in wait queue 1 : doigten
+now in wait queue 2 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : doigten
+now in wait queue 1 : symm
+now in wait queue 2 : gemm
+len wait queue > remian
+this is append name: doigten
+move doigten from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten this cgroup is Thaw()
+doigten cpus: 2
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+now in wait queue 2 : syrk
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 3
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+now in wait queue 2 : trmm
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: doigten
+after allocate cpu
+doigten cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+PPPPPPPPPPPPPPPPPPP this is doigten
+PPPPPPPPPPPPPPPPPPPP result:  doigten err: <nil>
+PPPPPPPPPPPPPPPPPPP this is doigten
+PPPPPPPPPPPPPPPPPPPP result:  doigten result: <nil>
+PPPPPPPPPPPPPPPPPPP this is doigten
+PPPPPPPPPPPPPPPPPPPP result:  doigten 34.836948
+PPPPPPPPPPPPPPPPPPP this is doigten
+
+OOOOOOOOOOOOOOO doigten this is overTimer
+OOOOOOOOOOOOOOOOOO doigten not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+begin schedule in proc_finish/overChan
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+len wait queue > remian
+syrk append ready queue
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : trmm
+now in wait queue 1 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 2
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : trmm
+now in wait queue 1 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 2
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 1
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : trmm
+now in wait queue 1 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOO syrk this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to syrk
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : gemm
+now in wait queue 1 : syrk
+len wait queue > remian
+this is append name: gemm
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 1
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOO trmm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to trmm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : syrk
+now in wait queue 1 : trmm
+len wait queue > remian
+this is append name: syrk
+move syrk from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk this cgroup is Thaw()
+syrk cpus: 2
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOO symm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to symm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : trmm
+now in wait queue 1 : symm
+len wait queue > remian
+this is append name: trmm
+move trmm from ready to running
+average: 1 
+
+in reschedule cpu process: gemm
+after allocate cpu
+gemm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm this cgroup is Thaw()
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOO gemm this cgroup is Freeze()
+OOOOOOOOOOOOOOOOOO send chan to gemm
+wait_queue length is not zero
+begin schedule
+Timer remain process: 1
+wait_queue length: 2
+now in wait queue 0 : symm
+now in wait queue 1 : gemm
+len wait queue > remian
+this is append name: symm
+move symm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm this cgroup is Thaw()
+symm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: trmm
+after allocate cpu
+trmm cpus: 3
+exit reschedule cpu
+
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+wait_queue length is not zero
+PPPPPPPPPPPPPPPPPPP this is trmm
+PPPPPPPPPPPPPPPPPPPP result:  trmm err: <nil>
+PPPPPPPPPPPPPPPPPPP this is trmm
+PPPPPPPPPPPPPPPPPPPP result:  trmm result: <nil>
+PPPPPPPPPPPPPPPPPPP this is trmm
+PPPPPPPPPPPPPPPPPPPP result:  trmm 54.638659
+PPPPPPPPPPPPPPPPPPP this is trmm
+
+OOOOOOOOOOOOOOO trmm this is overTimer
+OOOOOOOOOOOOOOOOOO trmm not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+begin schedule in proc_finish/overChan
+Timer remain process: 1
+wait_queue length: 1
+now in wait queue 0 : gemm
+len wait queue =< remain
+gemm append ready queue
+ready len: 1
+wait len: 0
+move gemm from ready to running
+average: 1 
+
+in reschedule cpu process: symm
+after allocate cpu
+symm cpus: 1
+in reschedule cpu process: syrk
+after allocate cpu
+syrk cpus: 2
+in reschedule cpu process: gemm
+after allocate cpu
+gemm this cgroup is Thaw()
+gemm cpus: 3
+exit reschedule cpu
+
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOO syrk when overtime no process wait continue
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOO symm when overtime no process wait continue
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOO gemm when overtime no process wait continue
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOO syrk when overtime no process wait continue
+PPPPPPPPPPPPPPPPPPP this is syrk
+PPPPPPPPPPPPPPPPPPPP result:  syrk err: <nil>
+PPPPPPPPPPPPPPPPPPP this is syrk
+PPPPPPPPPPPPPPPPPPPP result:  syrk result: <nil>
+PPPPPPPPPPPPPPPPPPP this is syrk
+PPPPPPPPPPPPPPPPPPPP result:  syrk 56.937780
+PPPPPPPPPPPPPPPPPPP this is syrk
+
+OOOOOOOOOOOOOOO syrk this is overTimer
+OOOOOOOOOOOOOOOOOO syrk not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+this is proc_finish!!!!wait_queue
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOO symm when overtime no process wait continue
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOO gemm when overtime no process wait continue
+PPPPPPPPPPPPPPPPPPP this is gemm
+PPPPPPPPPPPPPPPPPPPP result:  gemm err: <nil>
+PPPPPPPPPPPPPPPPPPP this is gemm
+PPPPPPPPPPPPPPPPPPPP result:  gemm result: <nil>
+PPPPPPPPPPPPPPPPPPP this is gemm
+PPPPPPPPPPPPPPPPPPPP result:  gemm 60.318179
+PPPPPPPPPPPPPPPPPPP this is gemm
+
+OOOOOOOOOOOOOOO gemm this is overTimer
+OOOOOOOOOOOOOOOOOO gemm not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+this is proc_finish!!!!wait_queue
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOO symm when overtime no process wait continue
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOO symm when overtime no process wait continue
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOO symm when overtime no process wait continue
+PPPPPPPPPPPPPPPPPPP this is symm
+PPPPPPPPPPPPPPPPPPPP result:  symm err: <nil>
+PPPPPPPPPPPPPPPPPPP this is symm
+PPPPPPPPPPPPPPPPPPPP result:  symm result: <nil>
+PPPPPPPPPPPPPPPPPPP this is symm
+PPPPPPPPPPPPPPPPPPPP result:  symm 68.873211
+PPPPPPPPPPPPPPPPPPP this is symm
+
+OOOOOOOOOOOOOOO symm this is overTimer
+OOOOOOOOOOOOOOOOOO symm not in running
+OOOOOOOOOOOOOOOOOOOO exit overtime 1
+this is proc_finishsss
+this is proc_finish!!!!wait_queue
